@@ -25,7 +25,7 @@ const useStyles = makeStyles({
     overflow: "auto",
   },
   heading: {
-    display: "flex",
+    display: "block",
   },
   profilePic: {
     width: "150px",
@@ -36,8 +36,7 @@ const useStyles = makeStyles({
     display: "flex",
     justifyContent: "center",
     width: "100%",
-    height: "150px",
-    alignItems: "center",
+    marginBottom: "20px",
     fontSize: "50px",
   },
   socialButtons: {
@@ -136,7 +135,12 @@ export default function Home(props) {
       <div className={classes.mainWrapper}>
         <div className={classes.heading}>
           <div
-            style={{ width: "50%", display: "flex", justifyContent: "center" }}
+            style={{
+              marginBottom: "20px",
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+            }}
           >
             <img alt="profile" src={pp} className={classes.profilePic} />
           </div>
