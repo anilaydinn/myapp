@@ -18,8 +18,11 @@ const useStyles = makeStyles({
   },
   mainWrapper: {
     padding: "15px",
-    width: "50%",
+    width: "75%",
     border: "1px solid #CDCDCD",
+    maxHeight: "950px",
+    overflowY: "scroll",
+    overflow: "auto",
   },
   heading: {
     display: "flex",
@@ -58,7 +61,58 @@ const useStyles = makeStyles({
   },
   reposWrapper: {
     width: "75%",
-    backgroundColor: "red",
+    fontSize: "35px",
+  },
+  reposHeading: {
+    textAlign: "center",
+    marginTop: "50px",
+  },
+  repoItem: {
+    borderRadius: "3px",
+    display: "flex",
+    width: "%75",
+    backgroundColor: "#CDCDCD",
+    height: "200px",
+    marginTop: "10px",
+  },
+  reposContainer: {
+    marginTop: "20px",
+  },
+  repoImg: {
+    display: "flex",
+    width: "33%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  repoHeading: {
+    marginTop: "20px",
+    display: "flex",
+    justifyContent: "center",
+    fontSize: "22px",
+    fontFamily: "Open Sans",
+  },
+  repoTextPart: {
+    width: "67%",
+    height: "100%",
+  },
+  seeOnGithubButton: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "black",
+    textAlign: "center",
+    width: "120px",
+    height: "45px",
+    color: "#FFF",
+    fontSize: "16px",
+    borderRadius: "10px",
+    cursor: "pointer",
+  },
+  textContainer: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100%",
   },
 });
 
@@ -73,6 +127,8 @@ export default function Home(props) {
     const data = await getRepos();
     setRepos(data);
   };
+
+  console.log(repos);
 
   const classes = useStyles(props);
   return (
@@ -92,34 +148,68 @@ export default function Home(props) {
             className={classes.link}
             href="https://www.linkedin.com/in/anıl-aydın-65aa13145"
           >
-            <LinkedInIcon className={classes.socialButton} />
+            <LinkedInIcon
+              style={{ fontSize: "40px" }}
+              className={classes.socialButton}
+            />
           </a>
           <a className={classes.link} href="https://github.com/anilaydinn">
-            <GitHubIcon className={classes.socialButton} />
+            <GitHubIcon
+              style={{ fontSize: "40px" }}
+              className={classes.socialButton}
+            />
           </a>
           <a className={classes.link} href="https://twitter.com/anllaydin">
-            <TwitterIcon className={classes.socialButton} />
+            <TwitterIcon
+              style={{ fontSize: "40px" }}
+              className={classes.socialButton}
+            />
           </a>
           <a
             className={classes.link}
             href="https://www.instagram.com/anlaydinn/"
           >
-            <InstagramIcon className={classes.socialButton} />
+            <InstagramIcon
+              style={{ fontSize: "40px" }}
+              className={classes.socialButton}
+            />
           </a>
           <a
             className={classes.link}
             href="https://www.facebook.com/Reypirking/"
           >
-            <FacebookIcon className={classes.socialButton} />
+            <FacebookIcon
+              style={{ fontSize: "40px" }}
+              className={classes.socialButton}
+            />
           </a>
         </div>
 
         <div className={classes.repos}>
           <div className={classes.reposWrapper}>
             <div className={classes.reposHeading}>My Github Repositories</div>
-            {repos.map((repo) => (
-              <div>{repo.name}</div>
-            ))}
+            <div className={classes.reposContainer}>
+              {repos.map((repo) => (
+                <div className={classes.repoItem} key={repo.id}>
+                  <div className={classes.repoImg}>
+                    <GitHubIcon style={{ fontSize: "80px" }} />
+                  </div>
+                  <div className={classes.repoTextPart}>
+                    <div className={classes.repoHeading}>{repo.name}</div>
+                    <div className={classes.textContainer}>
+                      <a
+                        style={{ textDecoration: "none" }}
+                        href={repo.html_url}
+                      >
+                        <div className={classes.seeOnGithubButton}>
+                          See On Github
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
