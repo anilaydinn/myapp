@@ -8,7 +8,7 @@ import InstagramIcon from "@material-ui/icons/Instagram";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import { getRepos } from "../api";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   mainContainer: {
     display: "flex",
     justifyContent: "center",
@@ -19,10 +19,12 @@ const useStyles = makeStyles({
   mainWrapper: {
     padding: "15px",
     width: "75%",
-    border: "1px solid #CDCDCD",
     maxHeight: "950px",
     overflowY: "scroll",
     overflow: "auto",
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
   },
   heading: {
     display: "block",
@@ -38,6 +40,9 @@ const useStyles = makeStyles({
     width: "100%",
     marginBottom: "20px",
     fontSize: "50px",
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "35px",
+    },
   },
   socialButtons: {
     display: "grid",
@@ -49,6 +54,10 @@ const useStyles = makeStyles({
   },
   socialButton: {
     cursor: "pointer",
+    fontSize: "40px",
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "30px",
+    },
   },
   link: {
     color: "black",
@@ -65,14 +74,21 @@ const useStyles = makeStyles({
   reposHeading: {
     textAlign: "center",
     marginTop: "50px",
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "18px",
+      marginTop: "15px",
+    },
   },
   repoItem: {
     borderRadius: "3px",
     display: "flex",
-    width: "%75",
+    width: "100%",
     backgroundColor: "#eae8e7",
     height: "200px",
     marginTop: "10px",
+    [theme.breakpoints.down("xs")]: {
+      width: "100%",
+    },
   },
   reposContainer: {
     marginTop: "20px",
@@ -89,6 +105,9 @@ const useStyles = makeStyles({
     justifyContent: "center",
     fontSize: "22px",
     fontFamily: "Open Sans",
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "14px",
+    },
   },
   repoTextPart: {
     width: "67%",
@@ -106,6 +125,11 @@ const useStyles = makeStyles({
     fontSize: "16px",
     borderRadius: "10px",
     cursor: "pointer",
+    [theme.breakpoints.down("xs")]: {
+      width: "90px",
+      height: "40px",
+      fontSize: "12px",
+    },
   },
   textContainer: {
     display: "flex",
@@ -113,7 +137,7 @@ const useStyles = makeStyles({
     alignItems: "center",
     height: "100%",
   },
-});
+}));
 
 export default function Home(props) {
   const [repos, setRepos] = useState([]);
@@ -152,40 +176,25 @@ export default function Home(props) {
             className={classes.link}
             href="https://www.linkedin.com/in/anıl-aydın-65aa13145"
           >
-            <LinkedInIcon
-              style={{ fontSize: "40px" }}
-              className={classes.socialButton}
-            />
+            <LinkedInIcon className={classes.socialButton} />
           </a>
           <a className={classes.link} href="https://github.com/anilaydinn">
-            <GitHubIcon
-              style={{ fontSize: "40px" }}
-              className={classes.socialButton}
-            />
+            <GitHubIcon className={classes.socialButton} />
           </a>
           <a className={classes.link} href="https://twitter.com/anllaydin">
-            <TwitterIcon
-              style={{ fontSize: "40px" }}
-              className={classes.socialButton}
-            />
+            <TwitterIcon className={classes.socialButton} />
           </a>
           <a
             className={classes.link}
             href="https://www.instagram.com/anlaydinn/"
           >
-            <InstagramIcon
-              style={{ fontSize: "40px" }}
-              className={classes.socialButton}
-            />
+            <InstagramIcon className={classes.socialButton} />
           </a>
           <a
             className={classes.link}
             href="https://www.facebook.com/Reypirking/"
           >
-            <FacebookIcon
-              style={{ fontSize: "40px" }}
-              className={classes.socialButton}
-            />
+            <FacebookIcon className={classes.socialButton} />
           </a>
         </div>
 
@@ -196,7 +205,7 @@ export default function Home(props) {
               {repos.map((repo) => (
                 <div className={classes.repoItem} key={repo.id}>
                   <div className={classes.repoImg}>
-                    <GitHubIcon style={{ fontSize: "80px" }} />
+                    <GitHubIcon style={{ fontSize: "50px" }} />
                   </div>
                   <div className={classes.repoTextPart}>
                     <div className={classes.repoHeading}>{repo.name}</div>
